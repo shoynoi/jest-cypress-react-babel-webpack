@@ -20,4 +20,5 @@ module.exports = {
     './test/jest.client.js',
     './test/jest.server.js',
   ],
+  watchPlugins: ['jest-watch-select-projects'],
 }
