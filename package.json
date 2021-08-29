@@ -15,12 +15,20 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|css|html|md)\"",
     "lint": "jest --config ./test/jest.lint.js",
     "validate": "npm run test && npm run build",
-    "setup": "npm install && npm run validate"
+    "setup": "npm install && npm run validate",
+    "prepare": "husky install"
   },
   "jest-runner-eslint": {
     "cliOptions": {
       "ignorePath": ".gitignore"
     }
+  },
+  "lint-staged": {
+    "**/*.+(js|json|html|css|md)": [
+      "prettier",
+      "jest --findRelatedTests",
+      "git add"
+    ]
   },
   "keywords": [],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
@@ -42,12 +50,14 @@
     "eslint-config-kentcdodds": "^14.6.1",
     "eslint-import-resolver-jest": "^3.0.0",
     "file-loader": "^5.0.2",
+    "husky": "^7.0.0",
     "identity-obj-proxy": "^3.0.0",
     "is-ci-cli": "^2.2.0",
     "jest": "^27.0.6",
     "jest-runner-eslint": "^0.10.1",
     "jest-watch-select-projects": "^2.0.0",
     "jest-watch-typeahead": "^0.6.4",
+    "lint-staged": "^11.1.2",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
     "serve": "^11.2.0",
